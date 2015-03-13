@@ -19,3 +19,4 @@ angular.module('electionhackApp', [
     'firebase.utils',
     'simpleLogin'
   ]);
+        

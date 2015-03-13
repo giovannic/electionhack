@@ -82,6 +82,11 @@ angular.module('electionhackApp')
         controller: 'ProfileFormCtrl'
       })
 
+      .when('/campaign', {
+        templateUrl: 'views/campaign.html',
+        controller: 'CampaignCtrl'
+      })
+
       .otherwise({redirectTo: '/'});
   }])
 
