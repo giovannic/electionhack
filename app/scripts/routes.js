@@ -67,20 +67,21 @@ angular.module('electionhackApp')
         controller: 'LoginCtrl'
       })
 
-      .when('/chat', {
-        templateUrl: 'views/chat.html',
-        controller: 'ChatCtrl'
-      })
-
       .whenAuthenticated('/account', {
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
 
-      .when('/chat', {
-        templateUrl: 'views/chat.html',
-        controller: 'ChatCtrl'
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
       })
+
+      .when('/run', {
+        templateUrl: 'views/profileform.html',
+        controller: 'ProfileFormCtrl'
+      })
+
       .otherwise({redirectTo: '/'});
   }])
 
