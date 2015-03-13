@@ -8,7 +8,7 @@
  * Controller of the electionhackApp
  */
 angular.module('electionhackApp')
-  .controller('ProfileFormCtrl', function ($scope) {
+  .controller('ProfileFormCtrl', function ($scope, $http) {
     
     var step = 0;
 
@@ -80,7 +80,8 @@ angular.module('electionhackApp')
             console.log('You did not fill in the form correctly!');
         }
     };
-
+    
+    
     // Validates the fields that belong to the current step and
     // then marks as complete before opening the next step
     $scope.back = function () {
@@ -91,6 +92,29 @@ angular.module('electionhackApp')
         }
         $scope.stages[step].open = true;
     };
-
-
+    
+    $scope.submit = function() {
+        alert("form sent");
+        $http.get("http://electionformfiller.herokuapp.com/", {
+            params: { addr_city: "blah", addr_first: "blah", addr_second: "test", firstname: "test2", 
+                     DoB_d: "10",
+            DoB_m: "10",
+            DoB_y: "1000",
+            commonforename: "blah",
+            commonsurname: "blah",
+            othernames: "blah",
+            surname: "blah",
+            addr_postcode: "blah",
+            constituency: "blah",
+            email: "phil.efstat@gmail.com" 
+            }
+        }).
+          success(function(data, status, headers, config) {
+            alert("check your email soon for the pdf");
+            
+          }).
+          error(function(data, status, headers, config) {
+            alert("something went wrong");
+          });
+    }
   });
