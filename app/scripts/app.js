@@ -29,6 +29,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/run', {
+        templateUrl: 'views/profileform.html',
+        controller: 'ProfileFormCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
