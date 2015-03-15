@@ -7,21 +7,30 @@
  * # campaign
  */
 angular.module('electionhackApp')
-  .directive('campaign', function ($http) {
+  .directive('campaign', function ($http, angularLoad) {
     return {
       restrict: 'E',
       scope: {
-        src: '=src'
+        src: '@'
       },
       link: function postLink(scope, element, attrs) {
-        var s = document.createElement("script");
-        s.type = "text/javascript";                
-        var src = element.attr('src');
+        var src = scope.src;
         src = "http://www.crowdfunder.co.uk/" + src +
         "/widget.js/";
-        s.src = src;
-        document.head.appendChild(s);
-        element.remove();
+        angularLoad.loadScript(src).then(function() {
+          element.html(html);
+        }); //well this hack is absolute filth
+        //var s = document.createElement("script");
+        //s.type = "text/javascript";                
+        //var src = element.attr('src');
+        //src = "http://www.crowdfunder.co.uk/" + src +
+        //"/widget.js/";
+        //$http.get(src).then(function(response) {
+          //console.log(response);
+        //})
+        //s.src = src;
+        //document.head.appendChild(s);
+        //element.remove();
       }
     };
   });
