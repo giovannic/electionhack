@@ -8,10 +8,9 @@
  * Controller of the electionhackApp
  */
 angular.module('electionhackApp')
-  .controller('CampaignCtrl', function ($scope, $firebaseArray, $sce) {
-    var ref = new Firebase("https://electionhack.firebaseio.com/campaigns");
+  .controller('CampaignCtrl', function ($scope, fbutil, $sce) {
     // download the data into a local object
-    $scope.campaigns = $firebaseArray(ref);
+    $scope.campaigns = fbutil.syncArray('/campaigns');
     $scope.addCrowdfunder = function() {
       $scope.campaigns.$add({
         src: $scope.newCrowdfunder
