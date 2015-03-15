@@ -17,6 +17,6 @@ angular.module('electionhackApp', [
     'ngTouch',
     'firebase',
     'firebase.utils',
-    'simpleLogin'
+    'simpleLogin',
+    'angularLoad'
   ]);
-        
