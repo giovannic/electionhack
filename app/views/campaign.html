@@ -6,25 +6,29 @@
   <ul>
     <li>Go to <a href='http://www.crowdfunder.co.uk'>crowdfunder</a></li>
     <li>Create a project to raise at least £500</li>
-    <li>Promote your project through social media</li>
+    <li>Get your friends to help through Facebook, Twitter...</li>
   </ul>
 
   <!-- add a new crowd funder url -->
   <form ng-submit="addCrowdfunder()">
     <input ng-model="newCrowdfunder" />
     <button type="submit">Add Crowdfunder</button>
-    <button ng-click="skip()">Skip</button>
   </form>
 </div>
 
 <div ng-if='myCrowdfund.src'>
   <h3> Your Crowdfund </h3>
   <campaign src="{{myCrowdfund.src}}"/></campaign>
-  <button ng-click="skip()">Next</button>
+  <button ng-click="removeCrowdfunder()">Remove</button>
 </div>
 
-<h3> Other Independent MPs currently crowdfunding </h3>
+<h1> Collect your signatures </h1>
+You have {{signatures.length}}/10 signatures
 
-<div ng-repeat='campaign in campaigns'>
-  <campaign src="{{campaign.src}}"/></campaign>
-</div>
+<p ng-hide='signatures.length === 10'>
+  Share your profile to get more signatures!
+<p>
+
+<p ng-show='signatures.length == 10'>
+  Request your papers! You're going to be in the election!
+<p>

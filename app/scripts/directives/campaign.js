@@ -19,7 +19,10 @@ angular.module('electionhackApp')
         "/widget.js/";
         angularLoad.loadScript(src).then(function() {
           element.html(html);
-        }); 
+        })
+        .catch(function() {
+          element.html('invalid campaign');
+        }); /* only one campaign can appear on a page at any time */
       }
     };
   });

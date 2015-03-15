@@ -9,21 +9,28 @@
  */
 angular.module('electionhackApp')
   .controller('CampaignCtrl', function ($scope, user, fbutil, $location) {
-    // download the data into a local object
-    $scope.campaigns = fbutil.syncArray('campaigns');
-
     $scope.myCrowdfund = fbutil.syncObject('campaigns/' + user.uid);
+    $scope.signatures = fbutil.syncArray('signatures/' + user.uid);
 
     $scope.addCrowdfunder = function() {
       var campaignRecord = {};
+
+      var slug = $scope.newCrowdfunder.split('/').filter(function(part) {
+        return part !== '?';
+      }).pop(); /* HACK */
+
       campaignRecord[user.uid] = { 
         raised: 0,
-        src: $scope.newCrowdfunder
+        src: slug
       };
       fbutil.ref('campaigns').update(campaignRecord);
     };
 
-    $scope.skip = function() {
-      $location.path('/sign');
+    $scope.removeCrowdfunder = function() {
+      fbutil.ref('campaigns/' + user.uid).remove();
+    };
+
+    $scope.finish = function() {
+      $location.path('/congratulations');
     };
   });
