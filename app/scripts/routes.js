@@ -77,12 +77,12 @@ angular.module('electionhackApp')
         controller: 'AboutCtrl'
       })
 
-      .when('/run', {
+      .whenAuthenticated('/run', {
         templateUrl: 'views/profileform.html',
         controller: 'ProfileFormCtrl'
       })
 
-      .when('/campaign', {
+      .whenAuthenticated('/campaign', {
         templateUrl: 'views/campaign.html',
         controller: 'CampaignCtrl'
       })
