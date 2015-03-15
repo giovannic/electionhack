@@ -12,4 +12,9 @@ angular.module('electionhackApp')
     var ref = new Firebase("https://electionhack.firebaseio.com/campaigns");
     // download the data into a local object
     $scope.campaigns = $firebaseArray(ref);
+    $scope.addCrowdfunder = function() {
+      $scope.campaigns.$add({
+        src: $scope.newCrowdfunder
+      });
+    };
   });
