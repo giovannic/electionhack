@@ -8,11 +8,11 @@
  * Controller of the electionhackApp
  */
 angular.module('electionhackApp')
-  .controller('ProfileFormCtrl', function ($scope) {
+  .controller('ProfileFormCtrl', function ($scope, fbutil, user) {
     
     var step = 0;
 
-    $scope.profile = {};
+    $scope.profile = fbutil.syncObject('forms/' + user.uid);
     $scope.validation = {
         errors: false
     };
