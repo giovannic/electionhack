@@ -1,54 +1,60 @@
-<!-- <ul>
-    <li ng-repeat="stage in stages"> {{ stage }}</li>
-</ul> -->
+<header>
+    <h2>It's unbelievably easy to become an MP.</h2>
+</header>
 
-<form ng-submit="saveProfile(profile)" novalidate>
+<form id="wizard" ng-submit="saveProfile(profile)" novalidate>
 
-    <div class="wizard">
+    <!-- Wizard step -->
+    <div class="wizard-step" ng-show="stages[0].open">
+        <header>
+            <h3>1. Basic info</h3>
+            <p>Please use your name as it is on your passport for the first three fields.</p>
+        </header>
 
         <!-- DEBUG -->
-        <p ng-if="validation.errors">You didn't fill in the form correctly!</p>
+        <p ng-if="validation.errors" class="text-danger">You didn't fill in the form correctly!</p>
 
-        <!-- Wizard step -->
-        <div class="wizard-step" ng-show="stages[0].open">
-            <div class="form-group">
-                <label>First Name</label>
-                <input type="text" ng-model="profile.firstName" class="form-control" placeholder="E.g. Bob..." />
-            </div>
-            <div class="form-group">
-                <label>Other Names</label>
-                <input type="text" ng-model="profile.otherNames" class="form-control" placeholder="E.g. David..." />
-            </div>
-            <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" ng-model="profile.lastName" class="form-control" placeholder="E.g. Smith..." /> 
-            </div>
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" ng-model="profile.firstName" class="form-control" placeholder="E.g. Bob..." />
         </div>
-
-        <!-- Wizard step -->
-        <div class="wizard-step" ng-show="stages[1].open">
-            <div class="form-group">
-                <label>FieldName</label>
-                <input type="text" ng-model="profile.constituency" class="form-control" placeholder="E.g. Bob..." />
-            </div>
-            <div class="form-group">
-                <label>FieldName</label>
-                <input type="text" ng-model="profile.address" class="form-control" placeholder="E.g. David..." />
-            </div>
+        <div class="form-group">
+            <label>Other Names</label>
+            <input type="text" ng-model="profile.otherNames" class="form-control" placeholder="E.g. David..." />
         </div>
-
-        <div class="wizard-nav">
-            <a ng-click="back(profile)" ng-disabled="stages[0].open" ng-class="{ 'disabled': stages[0].open }" class="prev-btn btn btn-primary wizard-btn pull-left">
-                Prev
-            </a>
-            <a ng-click="advance(profile)" class="prev-btn btn btn-primary wizard-btn pull-right">
-                Next
-            </a>
-            <a ng-click="submit()" class="prev-btn btn btn-primary wizard-btn pull-right">
-                Submit
-            </a>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" ng-model="profile.lastName" class="form-control" placeholder="E.g. Smith..." /> 
         </div>
+    </div>
 
+    <!-- Wizard step -->
+    <div class="wizard-step" ng-show="stages[1].open">
+        <header>
+            <h3>2. Constituency</h3>
+            <p>Where will you be running? Don't worry - your personal address won't be publicly visible.</p>
+        </header>
+
+        <div class="form-group">
+            <label>FieldName</label>
+            <input type="text" ng-model="profile.constituency" class="form-control" placeholder="E.g. Bob..." />
+        </div>
+        <div class="form-group">
+            <label>FieldName</label>
+            <input type="text" ng-model="profile.address" class="form-control" placeholder="E.g. David..." />
+        </div>
     </div>
 
 </form>
+
+<div class="wizard-nav">
+    <a ng-click="back(profile)" ng-disabled="stages[0].open" ng-class="{ 'disabled': stages[0].open }" class="prev-btn btn btn-primary wizard-btn pull-left">
+        Prev
+    </a>
+    <a ng-click="advance(profile)" class="next-btn btn btn-primary wizard-btn pull-right">
+        Next
+    </a>
+<!--     <a ng-click="submit()" class="prev-btn btn btn-primary wizard-btn pull-right">
+        Submit
+    </a> -->
+</div>
