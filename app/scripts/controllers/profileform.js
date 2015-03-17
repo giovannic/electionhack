@@ -106,17 +106,21 @@ angular.module('electionhackApp')
     $scope.submit = function() {
         alert("form sent");
         $http.get("http://electionformfiller.herokuapp.com/", {
-            params: { addr_city: "blah", addr_first: "blah", addr_second: "test", firstname: "test2", 
-                     DoB_d: "10",
-            DoB_m: "10",
-            DoB_y: "1000",
-            commonforename: "blah",
-            commonsurname: "blah",
-            othernames: "blah",
-            surname: "blah",
-            addr_postcode: "blah",
+            params: { 
+            addr_city: $scope.profile.addr_city,            
+            addr_first: $scope.profile.addr_first,
+            addr_second: $scope.profile.addr_second, 
+            firstname: $scope.profile.firstName,
+            DoB_d: $scope.profile.DoB_d,
+            DoB_m: $scope.profile.DoB_m,
+            DoB_y: $scope.profile.DoB_y,
+            commonforename: $scope.profile.firstName,
+            commonsurname: $scope.profile.lastName,
+            othernames: $scope.profile.otherNames,
+            surname: $scope.profile.lastName,
+            addr_postcode: $scope.profile.addr_pc,
             constituency: $scope.profile.constituency,
-            email: "phil.efstat@gmail.com" 
+            email: $scope.account.email
             }
         }).
           success(function(data, status, headers, config) {
