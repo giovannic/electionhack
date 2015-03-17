@@ -16,6 +16,7 @@ angular.module('electionhackApp')
     $scope.validation = {
         errors: false
     };
+    $scope.not_done = true;
 
     // Sorry for the hack
     // Each stage represents a step in the wizard
@@ -24,20 +25,25 @@ angular.module('electionhackApp')
             name: 'Basic info',
             open: true,
             complete: false,
-            fields: ['firstName', 'otherNames', 'lastName']
+            fields: ['firstName', 'otherNames', 'lastName', 'dob_d', 'dob_m', 'dob_y']
         },
         {
             name: 'Constituency info',
             open: false,
             complete: false,
-            fields: ['constituency', 'address']
+            fields: ['constituency']
         },
         {
             name: 'Contact info',
             open: false,
             complete: false,
-            fields: []
+            fields: ['addr_first', 'addr_second', 'addr_city', 'addr_pc']
         },
+        {
+            name: 'Submit',
+            open: false,
+            complete: true
+        }
     ];
 
     // Validates every step in a stage using the per-field validation below
@@ -71,6 +77,10 @@ angular.module('electionhackApp')
             $scope.stages[step].open = false;
             $scope.stages[step].complete = true;
             step += 1;
+            if (step > 2)
+            {
+                not_done = false;
+            }
             $scope.stages[step].open = true;
         } else {
             // show errors
@@ -89,6 +99,7 @@ angular.module('electionhackApp')
         if (step > 0) {
             step -= 1;
         }
+        
         $scope.stages[step].open = true;
     };
     
@@ -104,7 +115,7 @@ angular.module('electionhackApp')
             othernames: "blah",
             surname: "blah",
             addr_postcode: "blah",
-            constituency: "blah",
+            constituency: $scope.profile.constituency,
             email: "phil.efstat@gmail.com" 
             }
         }).

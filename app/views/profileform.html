@@ -26,35 +26,75 @@
             <label>Last Name</label>
             <input type="text" ng-model="profile.lastName" class="form-control" placeholder="E.g. Smith..." /> 
         </div>
+        <div class="form-group">
+            <label>Day of Birth</label>
+            <input type="text" ng-model="profile.dob_d" class="form-control" placeholder="E.g. 10..." />
+        </div>
+        <div class="form-group">
+            <label>Month of Birth</label>
+            <input type="text" ng-model="profile.dob_m" class="form-control" placeholder="E.g. 10..." />
+        </div>
+        <div class="form-group">
+            <label>Year of Birth</label>
+            <input type="text" ng-model="profile.dob_y" class="form-control" placeholder="E.g. 1992..." /> 
+        </div>
+        
     </div>
 
     <!-- Wizard step -->
     <div class="wizard-step" ng-show="stages[1].open">
         <header>
             <h3>2. Constituency</h3>
-            <p>Where will you be running? Don't worry - your personal address won't be publicly visible.</p>
+            <p>Where will you be running?</p>
         </header>
+        <p ng-if="validation.errors" class="text-danger">You didn't fill in the form correctly!</p>
 
         <div class="form-group">
-            <label>FieldName</label>
-            <input type="text" ng-model="profile.constituency" class="form-control" placeholder="E.g. Bob..." />
-        </div>
-        <div class="form-group">
-            <label>FieldName</label>
-            <input type="text" ng-model="profile.address" class="form-control" placeholder="E.g. David..." />
+            <label>Constituency</label>
+            <input type="text" ng-model="profile.constituency" class="form-control" placeholder="E.g. Kent..." />
         </div>
     </div>
+    <!-- Wizard step -->
+    <div class="wizard-step" ng-show="stages[2].open">
+        <header>
+            <h3>3. Your Address</h3>
+            <p>Don't worry - your personal address won't be publicly visible.</p>
+        </header>
+        <p ng-if="validation.errors" class="text-danger">You didn't fill in the form correctly!</p>
 
+        <div class="form-group">
+            <label>Address 1st Line</label>
+            <input type="text" ng-model="profile.addr_first" class="form-control" placeholder="" />
+        </div>
+        <div class="form-group">
+            <label>Address 2nd Line</label>
+            <input type="text" ng-model="profile.addr_second" class="form-control" placeholder="" />
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input type="text" ng-model="profile.addr_city" class="form-control" placeholder="" />
+        </div>
+        <div class="form-group">
+            <label>Post Code</label>
+            <input type="text" ng-model="profile.addr_pc" class="form-control" placeholder="" />
+        </div>
+    </div>
+        <div class="wizard-step" ng-show="stages[3].open">
+            <h1>When you're ready, click to have the form sent to you.</h1>
+            <a ng-click="submit()" class="prev-btn btn btn-primary wizard-btn pull-right">
+                Submit
+            </a>
+        </div>
 </form>
 
-<div class="wizard-nav">
+<div ng-if="not_done" class="wizard-nav">
     <a ng-click="back(profile)" ng-disabled="stages[0].open" ng-class="{ 'disabled': stages[0].open }" class="prev-btn btn btn-primary wizard-btn pull-left">
         Prev
     </a>
     <a ng-click="advance(profile)" class="next-btn btn btn-primary wizard-btn pull-right">
         Next
     </a>
-<!--     <a ng-click="submit()" class="prev-btn btn btn-primary wizard-btn pull-right">
-        Submit
-    </a> -->
+<a ng-click="submit()" class="prev-btn btn btn-primary wizard-btn pull-right">
+                Submit
+            </a>
 </div>
