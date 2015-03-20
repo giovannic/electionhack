@@ -11,9 +11,6 @@
             <p>Please use your name as it is on your passport for the first three fields.</p>
         </header>
 
-        <!-- DEBUG -->
-        <p ng-if="validation.errors" class="text-danger">You didn't fill in the form correctly!</p>
-
         <div class="form-group">
             <label>First Name</label>
             <input type="text" name="firstName" ng-model="profile.firstName" class="form-control" placeholder="E.g. Bob..." ng-pattern="/^[a-zA-Z-]*$/" required />
@@ -173,8 +170,11 @@
         <p ng-show="submitStatus.error" class="text-danger">
             Something went wrong - sorry! Please give it another go.
         </p>
+
     
     </div>
+    
+    <p ng-if="validation.errors" class="text-center text-danger">You didn't fill in the form correctly!</p>
 </form>
 
 <div ng-if="notDone" class="wizard-nav">

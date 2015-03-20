@@ -56,7 +56,7 @@ angular.module('electionhackApp')
         var fields = $scope.stages[step].fields;
         for (var i = 0; i < fields.length; i++) {
             if (!validateField(fields[i], profile[fields[i]])) {
-                // return false;
+                return false;
             }
         }
         return true;
@@ -77,7 +77,6 @@ angular.module('electionhackApp')
     // Validates the fields that belong to the current step and
     // then marks as complete before opening the next step
     $scope.advance = function (profile) {
-        console.log($scope.wizard);
         if (validateStep(step, profile)) {
             $scope.validation.errors = false;
             $scope.stages[step].open = false;
@@ -111,24 +110,30 @@ angular.module('electionhackApp')
     
     $scope.submitProfile = function (profile) {
         $scope.submitStatus.submitting = true;
-        
-        $http.get('http://electionformfiller.herokuapp.com/', {
-            params: { 
-                'addr_city': profile.addrCity,            
-                'addr_first': profile.addrFirst,
-                'addr_second': profile.addrSecond, 
-                'firstname': profile.firstName,
-                'DoB_d': profile.dobDay,
-                'DoB_m': profile.dobMonth,
-                'DoB_y': profile.dobYear,
-                'commonforename': profile.firstName,
-                'commonsurname': profile.lastName,
-                'othernames': profile.otherNames,
-                'surname': profile.lastName,
-                'addr_postcode': profile.addrPc,
-                'constituency': profile.constituency,
-                'email': $scope.email
-            }
+        var params = { 
+            'addr_city': profile.addrCity,            
+            'addr_first': profile.addrFirst,
+            'addr_second': profile.addrSecond, 
+            'firstname': profile.firstName,
+            'DoB_d': profile.dobDay,
+            'DoB_m': profile.dobMonth,
+            'DoB_y': profile.dobYear,
+            'commonforename': profile.firstName,
+            'commonsurname': profile.lastName,
+            'othernames': profile.otherNames,
+            'surname': profile.lastName,
+            'addr_postcode': profile.addrPc,
+            'constituency': profile.constituency,
+            'email': $scope.email
+        };
+
+        $http({
+            method: 'POST',
+            url: 'http://electionformfiller.herokuapp.com/',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+            },
+            params: params,
         }).
         success(function(data) {
             $scope.submitStatus.submitting = false;

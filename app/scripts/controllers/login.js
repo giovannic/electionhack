@@ -25,7 +25,7 @@ angular.module('electionhackApp')
       );
     };
 
-    $scope.createAccount = function(email, pass, confirm) { console.log(pass, confirm);
+    $scope.createAccount = function(email, pass, confirm) {
       $scope.err = null;
       if( !pass ) {
         $scope.err = 'Please enter a password';
