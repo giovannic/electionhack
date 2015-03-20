@@ -1,0 +1,108 @@
+@import "variables";
+
+.content > header {
+  padding: 5px 3px 20px;
+
+  h2 {
+    margin: 0;
+    font-size: 1.2em;
+    line-height: 1.5;
+  }
+}
+
+.content-panel {
+  background: #FFF;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 1px 10px rgba(43, 46, 49, 0.1);
+}
+
+.content-panel-inner {
+  padding: 0 15px 40px;
+
+  &> header {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+
+    h3 {
+      margin-top: 5px;
+      font-size: 1.3em;
+      color: $accent-clr;
+    }
+
+    p {
+      padding-left: 3px;
+      font-weight: 300;
+      color: lighten($body-clr, 3%);
+    }
+  }
+
+  .form-group {
+    padding: 10px 0;
+  }
+
+  label {
+    font-size: 1.1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+  }
+
+  .form-control {
+    height: $input-height;
+    box-shadow: none;
+    background: $input-clr;
+    border-color: $input-border-clr;
+    color: $body-clr;
+    font-weight: 300;
+    font-size: 1.1em;
+    letter-spacing: 0.35px;
+  }
+}
+
+.wizard-nav {
+  margin: 20px 0;
+  padding: 10px 0;
+}
+
+.wizard-btn {
+  padding: 15px 30px;
+  width: 130px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+
+  &:focus,
+  &:active {
+    outline: 0;
+  }
+
+  &.prev-btn {
+    background: $light-blue-clr;
+  }
+
+  &.next-btn {
+    background: $light-green-clr;
+  }
+
+  &.submit-btn {
+    background: $light-green-clr;
+    width: auto;
+  }
+
+  &.splash-btn {
+    background: $accent-clr;
+    width: 200px;
+  }
+}
+
+/* Validation styles */
+.wizard-step .form-control {
+  
+  &.ng-invalid.ng-dirty {
+    border-color: lighten($accent-clr, 10%);
+  }
+}
+

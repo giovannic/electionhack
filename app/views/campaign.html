@@ -1,0 +1,65 @@
+<div class="content-panel">
+  <div class="content-panel-inner" ng-if='!myCrowdfund.src'>
+    <header>
+      <h3> Raise your deposit </h3>
+      <p>To stand as an electoral candidate you need to have a deposit of £500.</p>
+    </header>
+    
+    <br />
+    <ul>
+      <li>Go to <a href='http://www.crowdfunder.co.uk'>crowdfunder</a></li>
+      <li>Create a project to raise at least £500</li>
+      <li>Get your friends to help through Facebook, Twitter...</li>
+    </ul>
+    <br />
+
+    <!-- add a new crowd funder url -->
+    <form name="cfForm" ng-submit="addCrowdfunder(cfForm, newCrowdfunder)" novalidate>
+      <div class="form-group">
+        <label>Link to Crowdfunder Campaign</label>
+        <input type="url" name="newCrowdfunder" ng-model="newCrowdfunder"
+          class="form-control"
+          placeholder="E.g. http://www.crowdfunder.co.uk/my-awesome-campaign"
+          ng-pattern="cfRegex" required />
+        <div class="error-container" 
+             ng-show="(cfForm.newCrowdfunder.$dirty || showValidation) && cfForm.newCrowdfunder.$invalid">
+            <small class="error" 
+                 ng-show="cfForm.newCrowdfunder.$error.required">
+                 This field is required.
+            </small>
+            <small class="error" 
+                 ng-show="cfForm.newCrowdfunder.$error.pattern">
+                 Please enter a valid Crowdfunder URL.
+            </small>
+        </div>
+      </div>
+
+      <button class="btn wizard-btn submit-btn btn-primary" type="submit">Add Crowdfunder</button>
+
+    </form>
+  </div>
+
+  <div class="content-panel-inner" ng-if='myCrowdfund.src'>
+    <header>
+      <h3> Your Crowdfunding Campaign</h3>
+      <p>Your progress towards your £500!</p>
+    </header>
+
+    <br/>
+    <campaign src="{{myCrowdfund.src}}"/></campaign>
+    <br/>
+    <button class="btn wizard-btn submit-btn btn-primary" ng-click="removeCrowdfunder()">Remove</button>
+
+    <h1> Collect your signatures </h1>
+    <p>You have {{signatures.length}}/10 signatures</p>
+
+    <p ng-hide='signatures.length === 10'>
+      Share your profile to get more signatures!
+    <p>
+
+    <p ng-show='signatures.length == 10'>
+      Request your papers! You're going to be in the election!
+    <p>
+  </div>
+
+</div>

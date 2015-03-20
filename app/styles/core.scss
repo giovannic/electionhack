@@ -1,0 +1,134 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+@import "variables";
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+body {
+  font-family: $body-font;
+  background: $bg-clr;
+  color: $body-clr;
+}
+
+// Temp until footer 
+body {
+  padding-bottom: 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $heading-font;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+
+/* ---------------------------
+ * Nav -----------------------
+ * --------------------------- */
+
+body > .header {
+  position: relative;
+  z-index: 50;
+}
+
+.navbar.navbar-default {
+  background-color: $accent-clr;
+  border: none;
+  border-radius: 0;
+  color: #FFF;
+}
+
+.navbar-header {
+  height: $navbar-height;
+  text-align: center;
+}
+
+.navbar-default .navbar-toggle {
+  padding-top: ($navbar-height - 35) / 2;
+  border: none;
+  background: none;
+
+  .icon-bar {
+    background-color: #FFF;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: none;
+    background: none;
+  }
+}
+
+.navbar.navbar-default .navbar-nav > li > a {
+  height: $navbar-height;
+  padding-top: ($navbar-height - 26px) / 2; 
+  padding-bottom: ($navbar-height - 26px) / 2; 
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: none;
+    background: none;
+    color: darken(#FFF, 6%);
+  }
+}
+
+.navbar-brand {
+  display: block;
+  float: none;
+  width: 100%;
+  padding: 0 30px;
+}
+
+.navbar-brand h1 {
+  padding-top: ($navbar-height - 28) / 2;
+  font-size: 1.1em;
+  margin: 0;
+  color: #FFF;
+  letter-spacing: 0.5px;
+}
+
+.navbar-default {
+
+  .navbar-nav > li > a,
+  .navbar-nav > .active > a {
+    color: #FFF;
+    background: none;
+  }
+}
+
+.splash {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: url('../images/splash-bg.jpg');
+  background-size: cover;
+  background-position: bottom center;
+
+  &> header {
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    padding: 0 40px;
+    text-align: center;
+
+    h1 {
+      font-size: 2.2em;
+      color: #FFF;
+      margin-bottom: 30px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+
+
