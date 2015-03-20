@@ -9,21 +9,27 @@
  */
 angular.module('electionhackApp')
   .controller('CampaignCtrl', function ($scope, user, fbutil, $location) {
+    $scope.showValidation = false;
+    
     $scope.myCrowdfund = fbutil.syncObject('campaigns/' + user.uid);
     $scope.signatures = fbutil.syncArray('signatures/' + user.uid);
+    $scope.cfRegex = /https?:\/\/www\.crowdfunder\.co\.uk\/([^\/?]+)(?=\/?(?:$|\?))/;
 
-    $scope.addCrowdfunder = function() {
-      var campaignRecord = {};
+    $scope.addCrowdfunder = function (cfForm, url) {
+      if (cfForm.$valid) {
+        $scope.showValidation = false;
+        var campaignRecord = {};
+        var matches = $scope.cfRegex.exec(url);
+        var slug = matches[1];
 
-      var slug = $scope.newCrowdfunder.split('/').filter(function(part) {
-        return part !== '?';
-      }).pop(); /* HACK */
-
-      campaignRecord[user.uid] = { 
-        raised: 0,
-        src: slug
-      };
-      fbutil.ref('campaigns').update(campaignRecord);
+        campaignRecord[user.uid] = { 
+          raised: 0,
+          src: slug
+        };
+        fbutil.ref('campaigns').update(campaignRecord);
+      } else {
+        $scope.showValidation = true;
+      }
     };
 
     $scope.removeCrowdfunder = function() {

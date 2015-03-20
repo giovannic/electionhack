@@ -67,6 +67,11 @@ angular.module('electionhackApp')
         controller: 'LoginCtrl'
       })
 
+      .whenAuthenticated('/logout', {
+        template: '',
+        controller: 'LogoutCtrl'
+      })
+
       .whenAuthenticated('/account', {
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'

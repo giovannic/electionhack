@@ -2,10 +2,10 @@
     <h2>It's unbelievably easy to become an MP.</h2>
 </header>
 
-<form id="wizard" ng-submit="saveProfile(profile)" novalidate>
+<form id="wizard" name="wizard" class="content-panel" ng-submit="submitProfile(profile)" novalidate>
 
     <!-- Wizard step -->
-    <div class="wizard-step" ng-show="stages[0].open">
+    <div class="wizard-step content-panel-inner" ng-if="stages[0].open">
         <header>
             <h3>1. Basic info</h3>
             <p>Please use your name as it is on your passport for the first three fields.</p>
@@ -16,33 +16,101 @@
 
         <div class="form-group">
             <label>First Name</label>
-            <input type="text" ng-model="profile.firstName" class="form-control" placeholder="E.g. Bob..." />
+            <input type="text" name="firstName" ng-model="profile.firstName" class="form-control" placeholder="E.g. Bob..." ng-pattern="/^[a-zA-Z-]*$/" required />
+            <div class="error-container" 
+                 ng-show="wizard.firstName.$dirty && wizard.firstName.$invalid">
+                <small class="error" 
+                     ng-show="wizard.firstName.$error.required">
+                     This field is required.
+                </small>
+                <small class="error" 
+                     ng-show="wizard.firstName.$error.pattern">
+                     This doesn't fit our format, please use letters from the English alphabet.
+                </small>
+            </div>
         </div>
+
         <div class="form-group">
             <label>Other Names</label>
-            <input type="text" ng-model="profile.otherNames" class="form-control" placeholder="E.g. David..." />
+            <input type="text" name="otherNames" ng-model="profile.otherNames" class="form-control" placeholder="E.g. David..." ng-pattern="/^[a-zA-Z-]*$/" required />
+            <div class="error-container" 
+                 ng-show="wizard.otherNames.$dirty && wizard.otherNames.$invalid">
+                <small class="error" 
+                     ng-show="wizard.otherNames.$error.required">
+                     This field is required.
+                </small>
+                <small class="error" 
+                     ng-show="wizard.otherNames.$error.pattern">
+                     This doesn't fit our format, please use letters from the English alphabet.
+                </small>
+            </div>
         </div>
+
         <div class="form-group">
             <label>Last Name</label>
-            <input type="text" ng-model="profile.lastName" class="form-control" placeholder="E.g. Smith..." /> 
+            <input type="text" name="lastName" ng-model="profile.lastName" class="form-control" placeholder="E.g. Smith..." ng-pattern="/^[a-zA-Z-]*$/" required />
+            <div class="error-container" 
+                 ng-show="wizard.lastName.$dirty && wizard.lastName.$invalid">
+                <small class="error" 
+                     ng-show="wizard.lastName.$error.required">
+                     This field is required.
+                </small>
+                <small class="error" 
+                     ng-show="wizard.lastName.$error.pattern">
+                     This doesn't fit our format, please use letters from the English alphabet.
+                </small>
+            </div> 
         </div>
         <div class="form-group">
             <label>Day of Birth</label>
-            <input type="text" ng-model="profile.dob_d" class="form-control" placeholder="E.g. 10..." />
+            <input type="number" name="dobDay" ng-model="profile.dobDay" class="form-control" placeholder="E.g. 05..." ng-pattern="/^\d\d$/" required />
+            <div class="error-container" 
+                 ng-show="wizard.dobDay.$dirty && wizard.dobDay.$invalid">
+                <small class="error" 
+                     ng-show="wizard.dobDay.$error.required">
+                     This field is required.
+                </small>
+                <small class="error" 
+                     ng-show="wizard.dobDay.$error.pattern">
+                     Please enter your day of birth in the format "DD" (e.g 05).
+                </small>
+            </div>
         </div>
         <div class="form-group">
             <label>Month of Birth</label>
-            <input type="text" ng-model="profile.dob_m" class="form-control" placeholder="E.g. 10..." />
+            <input type="number" name="dobMonth" ng-model="profile.dobMonth" class="form-control" placeholder="E.g. 03..." ng-pattern="/^\d\d$/" required />
+            <div class="error-container" 
+                 ng-show="wizard.dobMonth.$dirty && wizard.dobMonth.$invalid">
+                <small class="error" 
+                     ng-show="wizard.dobMonth.$error.required">
+                     This field is required.
+                </small>
+                <small class="error" 
+                     ng-show="wizard.dobMonth.$error.pattern">
+                     Please enter your month of birth in the format "MM" (e.g 03).
+                </small>
+            </div>
         </div>
         <div class="form-group">
             <label>Year of Birth</label>
-            <input type="text" ng-model="profile.dob_y" class="form-control" placeholder="E.g. 1992..." /> 
+            <input type="number" name="dobYear" ng-model="profile.dobYear" class="form-control" placeholder="E.g. 1992..." ng-pattern="/^\d\d\d\d$/" required /> 
+            <div class="error-container" 
+                 ng-show="wizard.dobYear.$dirty && wizard.dobYear.$invalid">
+                <small class="error" 
+                     ng-show="wizard.dobYear.$error.required">
+                     This field is required.
+                </small>
+                <small class="error" 
+                     ng-show="wizard.dobYear.$error.pattern">
+                     Please enter your year of birth in the format "YYYY" (e.g 1984).
+                </small>
+            </div>
         </div>
         
     </div>
 
     <!-- Wizard step -->
-    <div class="wizard-step" ng-show="stages[1].open">
+    <div class="wizard-step content-panel-inner" ng-if="stages[1].open">
         <header>
             <h3>2. Constituency</h3>
             <p>Where will you be running?</p>
@@ -51,11 +119,12 @@
 
         <div class="form-group">
             <label>Constituency</label>
-            <input type="text" ng-model="profile.constituency" class="form-control" placeholder="E.g. Kent..." />
+            <input type="text" name="constituency" ng-model="profile.constituency" class="form-control" placeholder="E.g. Kent..." required />
         </div>
     </div>
+
     <!-- Wizard step -->
-    <div class="wizard-step" ng-show="stages[2].open">
+    <div class="wizard-step content-panel-inner" ng-if="stages[2].open">
         <header>
             <h3>3. Your Address</h3>
             <p>Don't worry - your personal address won't be publicly visible.</p>
@@ -64,37 +133,55 @@
 
         <div class="form-group">
             <label>Address 1st Line</label>
-            <input type="text" ng-model="profile.addr_first" class="form-control" placeholder="" />
+            <input type="text" name="addrFirst" ng-model="profile.addrFirst" class="form-control" placeholder="E.g. House number/name" required />
         </div>
         <div class="form-group">
             <label>Address 2nd Line</label>
-            <input type="text" ng-model="profile.addr_second" class="form-control" placeholder="" />
+            <input type="text" name="addrSecond" ng-model="profile.addrSecond" class="form-control" placeholder="E.g. Street name" required />
         </div>
         <div class="form-group">
             <label>City</label>
-            <input type="text" ng-model="profile.addr_city" class="form-control" placeholder="" />
+            <input type="text" name="addrCity" ng-model="profile.addrCity" class="form-control" placeholder="E.g. London" required />
         </div>
         <div class="form-group">
             <label>Post Code</label>
-            <input type="text" ng-model="profile.addr_pc" class="form-control" placeholder="" />
+            <input type="text" name="addrPc" ng-model="profile.addrPc" class="form-control" placeholder="" required />
         </div>
     </div>
-        <div class="wizard-step" ng-show="stages[3].open">
-            <h1>When you're ready, click to have the form sent to you.</h1>
-            <a ng-click="submit()" class="prev-btn btn btn-primary wizard-btn pull-right">
-                Submit
+        
+    <div class="wizard-step content-panel-inner" ng-if="stages[3].open">
+        <header>
+            <h3>All done! Easy, right?</h3>
+            <p>That's all the info we need!</p>
+        </header>
+        <p>Thanks! Click the submit button below and we'll email you your forms to sign immediately.</p>
+        <p>[<em>Instructions here. Crowdfunding/signatures/next steps</em>]</p>
+        
+        <input ng-hide="submitStatus.submitting || submitStatus.submitted || submitStatus.error" type="submit" class="next-btn btn btn-primary wizard-btn" value="Submit">
+
+        <p ng-show="submitStatus.submitting">
+            <strong>Processing...</strong>
+        </p>
+        <p ng-show="submitStatus.submitted">
+            <strong>All done! Check your inbox at {{ email }}</strong>
+            <br/>
+            <a href="#/campaign" class="submit-btn btn btn-primary wizard-btn">
+                Finish
             </a>
-        </div>
+        </p>
+
+        <p ng-show="submitStatus.error" class="text-danger">
+            Something went wrong - sorry! Please give it another go.
+        </p>
+    
+    </div>
 </form>
 
-<div ng-if="not_done" class="wizard-nav">
+<div ng-if="notDone" class="wizard-nav">
     <a ng-click="back(profile)" ng-disabled="stages[0].open" ng-class="{ 'disabled': stages[0].open }" class="prev-btn btn btn-primary wizard-btn pull-left">
         Prev
     </a>
     <a ng-click="advance(profile)" class="next-btn btn btn-primary wizard-btn pull-right">
         Next
     </a>
-<a ng-click="submit()" class="prev-btn btn btn-primary wizard-btn pull-right">
-                Submit
-            </a>
 </div>

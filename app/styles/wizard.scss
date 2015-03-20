@@ -10,14 +10,14 @@
   }
 }
 
-#wizard {
+.content-panel {
   background: #FFF;
   border-radius: 6px;
   padding: 20px;
   box-shadow: 0 1px 10px rgba(43, 46, 49, 0.1);
 }
 
-.wizard-step {
+.content-panel-inner {
   padding: 0 15px 40px;
 
   &> header {
@@ -50,20 +50,15 @@
     margin-bottom: 10px;
   }
 
-  input[type="text"],
-  input,
-  textarea {
-
-    &.form-control {
-      height: $input-height;
-      box-shadow: none;
-      background: $input-clr;
-      border-color: $input-border-clr;
-      color: $body-clr;
-      font-weight: 300;
-      font-size: 1.1em;
-      letter-spacing: 0.35px;
-    }
+  .form-control {
+    height: $input-height;
+    box-shadow: none;
+    background: $input-clr;
+    border-color: $input-border-clr;
+    color: $body-clr;
+    font-weight: 300;
+    font-size: 1.1em;
+    letter-spacing: 0.35px;
   }
 }
 
@@ -91,4 +86,23 @@
   &.next-btn {
     background: $light-green-clr;
   }
+
+  &.submit-btn {
+    background: $light-green-clr;
+    width: auto;
+  }
+
+  &.splash-btn {
+    background: $accent-clr;
+    width: 200px;
+  }
 }
+
+/* Validation styles */
+.wizard-step .form-control {
+  
+  &.ng-invalid.ng-dirty {
+    border-color: lighten($accent-clr, 10%);
+  }
+}
+

@@ -15,8 +15,8 @@ angular.module('electionhackApp')
       },
       link: function postLink(scope, element, attrs) {
         var src = scope.src;
-        src = "http://www.crowdfunder.co.uk/" + src +
-        "/widget.js/";
+        src = 'http://www.crowdfunder.co.uk/' + src +
+        '/widget.js/';
         angularLoad.loadScript(src).then(function() {
           element.html(html);
         })

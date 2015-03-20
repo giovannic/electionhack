@@ -46,9 +46,14 @@
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/about">About</a></li>
               <li><a ng-href="#/run">Run</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
               <li class="text-right">
-                <a ng-hide-auth="" href="#/login">log in</a>
-                <a ng-show-auth="" href="#/account">account</a>
+                <a ng-hide-auth="" href="#/login">Log In</a>
+                <a ng-show-auth="" href="#/account">Account</a>
+              </li>
+              <li class="text-right">
+                <a ng-show-auth="" href="#/logout">Log Out</a>
               </li>
             </ul>
           </div>
@@ -57,7 +62,7 @@
     </div>
 
     <div class="container">
-      <div class="content" ng-view=""></div>
+      <div class="content" ng-view="" ng-cloak></div>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -114,10 +119,12 @@
         <script src="scripts/filters/reverse.js"></script>
         <script src="scripts/angularfire/simpleLogin.js"></script>
         <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/logout.js"></script>
         <script src="scripts/controllers/account.js"></script>
         <script src="scripts/directives/ngShowAuth.js"></script>
         <script src="scripts/directives/ngHideAuth.js"></script>
         <script src="scripts/routes.js"></script>
+        <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/profileform.js"></script>
         <script src="scripts/controllers/campaign.js"></script>
         <script src="scripts/directives/campaign.js"></script>

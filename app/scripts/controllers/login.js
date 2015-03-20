@@ -25,10 +25,13 @@ angular.module('electionhackApp')
       );
     };
 
-    $scope.createAccount = function(email, pass, confirm) {
+    $scope.createAccount = function(email, pass, confirm) { console.log(pass, confirm);
       $scope.err = null;
       if( !pass ) {
         $scope.err = 'Please enter a password';
+      }
+      else if( !confirm ) {
+        $scope.err = 'Please confirm your password';
       }
       else if( pass !== confirm ) {
         $scope.err = 'Passwords do not match';
@@ -41,7 +44,7 @@ angular.module('electionhackApp')
     
 
     function redirect() {
-      $location.path('/account');
+      $location.path('/run');
     }
 
     function showError(err) {
