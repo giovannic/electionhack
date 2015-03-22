@@ -22,7 +22,7 @@ angular.module('electionhackApp')
         var matches = $scope.cfRegex.exec(url);
         var slug = matches[1];
 
-        campaignRecord[user.name] = { 
+        campaignRecord[user.uid] = { 
           raised: 0,
           src: slug
         };

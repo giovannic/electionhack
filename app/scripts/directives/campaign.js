@@ -14,15 +14,16 @@ angular.module('electionhackApp')
         src: '@'
       },
       link: function postLink(scope, element) {
-        var src = scope.src;
-        src = 'http://www.crowdfunder.co.uk/' + src +
-        '/widget.js/';
-        angularLoad.loadScript(src).then(function() {
-          element.html(html);// jshint ignore:line
-        })
-        .catch(function() {
-          element.html('invalid campaign');
-        }); /* only one campaign can appear on a page at any time */
+        scope.$watch('src', function() {
+          var link = 'http://www.crowdfunder.co.uk/' + scope.src +
+          '/widget.js/';
+          angularLoad.loadScript(link).then(function() {
+            element.html(html);// jshint ignore:line
+          })
+          .catch(function() {
+            element.html('invalid campaign');
+          }); /* only one campaign can appear on a page at any time */
+        });
       }
     };
   });
