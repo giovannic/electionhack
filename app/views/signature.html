@@ -6,10 +6,22 @@
   </div>
 
   <div class="content-panel profile-panel">
-    <p>Sign for {{form.firstname}} to become a candidate for {{form.constituency}}</p>
+    <p>Sign below for {{form.firstname}} to become a candidate for {{form.constituency}}</p>
     <canvas class="signature-box">
     </canvas>
-    <p>Hint: use your mouse/touch</p>
+    <br/>
+    <label for="electoralNumber">
+      Your electoral number
+    </label>
+    <input name="electoralNumber" type="text" ng-model="electoralNumber">
+    </input>
+    <p>
+    Hint: This should be on your polling card.
+    You can also get it by e-mailing the council with your name and address
+    </p>
+    <button class="btn btn-primary wizard-btn" ng-click="saveSignature()">
+      Sign
+    </button>
   </div>
 </div>
 
