@@ -22,7 +22,7 @@ angular.module('electionhackApp')
         var matches = $scope.cfRegex.exec(url);
         var slug = matches[1];
 
-        campaignRecord[user.uid] = { 
+        campaignRecord[user.name] = { 
           raised: 0,
           src: slug
         };
@@ -33,7 +33,7 @@ angular.module('electionhackApp')
     };
 
     $scope.removeCrowdfunder = function() {
-      fbutil.ref('campaigns/' + user.uid).remove();
+      fbutil.ref('campaigns/' + user.name).remove();
     };
 
     $scope.finish = function() {

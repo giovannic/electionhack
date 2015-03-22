@@ -1,1 +1,11 @@
-<p>This is the signature view.</p>
+<div ng-show="form">
+  <p>Sign for {{form.firstname}} to become a candidate for {{form.constituency}}</p>
+  <canvas class="signature-box">
+  </canvas>
+  <p>Hint: use your mouse/touch</p>
+</div>
+
+<div ng-hide="form">
+  This candidate does not exist
+  {{userId}}
+</div>

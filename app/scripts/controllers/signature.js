@@ -8,10 +8,9 @@
  * Controller of the electionhackApp
  */
 angular.module('electionhackApp')
-  .controller('SignatureCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('SignatureCtrl', function ($scope, $routeParams, fbutil) {
+    $scope.userId = $routeParams.candidate;
+    $scope.form = fbutil.syncObject('forms/' + $scope.userId);
+    var canvas = document.querySelector('canvas');// jshint ignore:line
+    var signaturePad = new SignaturePad(canvas);// jshint ignore:line
   });

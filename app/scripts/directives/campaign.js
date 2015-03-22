@@ -13,12 +13,12 @@ angular.module('electionhackApp')
       scope: {
         src: '@'
       },
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
         var src = scope.src;
         src = 'http://www.crowdfunder.co.uk/' + src +
         '/widget.js/';
         angularLoad.loadScript(src).then(function() {
-          element.html(html);
+          element.html(html);// jshint ignore:line
         })
         .catch(function() {
           element.html('invalid campaign');
