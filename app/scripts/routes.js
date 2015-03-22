@@ -96,6 +96,10 @@ angular.module('electionhackApp')
         templateUrl: 'views/congratulations.html',
         controller: 'CongratulationsCtrl'
       })
+      .when('/signature', {
+        templateUrl: 'views/signature.html',
+        controller: 'SignatureCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 
